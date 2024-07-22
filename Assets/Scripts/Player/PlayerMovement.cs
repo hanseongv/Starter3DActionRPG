@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    [RequireComponent(typeof(StarterAssetsInputs))]
+    [RequireComponent(typeof(CustomPlayerInput))]
     [RequireComponent(typeof(PlayerAudio))]
     [RequireComponent(typeof(Animator))]
     public class PlayerMovement : MonoBehaviour
     {
         internal Vector3 MoveMotion;
 
-        [Header("Move")] public float moveSpeed = 2.0f;
+        [Header("Move")] public float walkSpeed = 2.0f;
         public float sprintSpeed = 5.335f;
         public float rotationSmoothTime = 0.12f;
         public float speedChangeRate = 10.0f;
@@ -28,7 +28,7 @@ namespace Player
 
         #region Components
 
-        private StarterAssetsInputs _input;
+        private CustomPlayerInput _input;
         private GameObject _mainCamera;
         private PlayerAudio _playerAudio;
         private Animator _animator;
@@ -38,7 +38,7 @@ namespace Player
 
         internal void Init()
         {
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = GetComponent<CustomPlayerInput>();
             _playerAudio = GetComponent<PlayerAudio>();
             _animator = GetComponent<Animator>();
 
@@ -50,13 +50,13 @@ namespace Player
 
         internal void Move()
         {
-            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
+            var inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
 
-            float targetSpeed = _input.sprint ? sprintSpeed : moveSpeed;
+            var targetSpeed = _input.walk ? walkSpeed : sprintSpeed;
             if (_input.move == Vector2.zero) targetSpeed = 0.0f;
             var currentHorizontalSpeed = inputDirection.magnitude * targetSpeed;
-            float speedOffset = 0.1f;
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+            var speedOffset = 0.1f;
+            var inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
             if (currentHorizontalSpeed < targetSpeed - speedOffset || targetSpeed + speedOffset < currentHorizontalSpeed)
             {

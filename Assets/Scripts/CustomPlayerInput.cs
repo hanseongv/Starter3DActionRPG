@@ -2,25 +2,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class StarterAssetsInputs : MonoBehaviour
+public class CustomPlayerInput : MonoBehaviour
 {
     [Header("Character Input Values")] public Vector2 move;
     public Vector2 look;
     public bool jump;
-    public bool sprint;
+    public bool walk;
     public bool cameraTurn;
 
     [Header("Movement Settings")] public bool analogMovement;
 
-    [Header("Mouse Cursor Settings")] public bool cursorLocked = true;
-    public bool cursorInputForLook = true;
+    [Header("Mouse Cursor Settings")] public bool cursorLocked;
+    public bool cursorInputForLook;
 
     public void OnCameraTurn(InputValue value)
     {
         CameraTurnInput(value.isPressed);
-        cursorInputForLook = value.isPressed;
+        SetCursorState(value.isPressed);
     }
-
 
     public void OnMove(InputValue value)
     {
@@ -40,9 +39,9 @@ public class StarterAssetsInputs : MonoBehaviour
         JumpInput(value.isPressed);
     }
 
-    public void OnSprint(InputValue value)
+    public void OnWalk(InputValue value)
     {
-        SprintInput(value.isPressed);
+        WalkInput(value.isPressed);
     }
 
     public void MoveInput(Vector2 newMoveDirection)
@@ -60,9 +59,9 @@ public class StarterAssetsInputs : MonoBehaviour
         jump = newJumpState;
     }
 
-    public void SprintInput(bool newValue)
+    public void WalkInput(bool newValue)
     {
-        sprint = newValue;
+        walk = newValue;
     }
 
     private void CameraTurnInput(bool value)
@@ -70,13 +69,9 @@ public class StarterAssetsInputs : MonoBehaviour
         cameraTurn = value;
     }
 
-    private void OnApplicationFocus(bool hasFocus)
-    {
-        SetCursorState(cursorLocked);
-    }
-
     private void SetCursorState(bool newState)
     {
+        cursorInputForLook = newState;
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }

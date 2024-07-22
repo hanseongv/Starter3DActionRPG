@@ -25,7 +25,7 @@ namespace Player
 
         #region Components
 
-        private StarterAssetsInputs _input;
+        private CustomPlayerInput _input;
         private PlayerGroundedCheck _groundedCheck;
         private Animator _animator;
 
@@ -35,7 +35,7 @@ namespace Player
         internal void Init()
         {
             _terminalVelocity = 53.0f;
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = GetComponent<CustomPlayerInput>();
             _groundedCheck = GetComponent<PlayerGroundedCheck>();
             _animator = GetComponent<Animator>();
             _jumpTimeoutDelta = jumpTimeout;

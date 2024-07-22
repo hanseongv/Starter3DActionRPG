@@ -20,14 +20,14 @@ namespace Player
 
         #region Components
 
-        private StarterAssetsInputs _input;
+        private CustomPlayerInput _input;
 
         #endregion
 
         internal void Init()
         {
             _cinemachineTargetYaw = cinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = GetComponent<CustomPlayerInput>();
         }
 
         internal void CameraRotation()
