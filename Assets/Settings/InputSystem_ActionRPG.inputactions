@@ -61,9 +61,9 @@
                 },
                 {
                     "name": "CameraTurn",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "0a3f824c-7751-4257-a3bc-05007c92e310",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -238,10 +238,10 @@
                 {
                     "name": "",
                     "id": "6360ea61-7319-460e-93e3-5e9b90e0fe11",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/backquote",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "CameraTurn",
                     "isComposite": false,
                     "isPartOfComposite": false

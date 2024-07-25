@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Player
 {
-    [RequireComponent(typeof(Animator))]
     public class PlayerGroundedCheck : MonoBehaviour
     {
         [Header("GroundedCheck")] [SerializeField]
@@ -19,14 +18,12 @@ namespace Player
         #endregion
 
         #region Components
-
-        private Animator _animator;
+        internal Animator animator;
 
         #endregion
 
         private void Start()
         {
-            _animator = GetComponent<Animator>();
             _animIDGrounded = Animator.StringToHash("Grounded");
         }
 
@@ -40,7 +37,7 @@ namespace Player
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z);
             grounded = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers, QueryTriggerInteraction.Ignore);
 
-            _animator.SetBool(_animIDGrounded, grounded);
+            animator.SetBool(_animIDGrounded, grounded);
         }
     }
 }

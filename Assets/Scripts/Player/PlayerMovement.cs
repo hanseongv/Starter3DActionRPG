@@ -5,7 +5,6 @@ namespace Player
 {
     [RequireComponent(typeof(CustomPlayerInput))]
     [RequireComponent(typeof(PlayerAudio))]
-    [RequireComponent(typeof(Animator))]
     public class PlayerMovement : MonoBehaviour
     {
         internal Vector3 MoveMotion;
@@ -27,11 +26,11 @@ namespace Player
         #endregion
 
         #region Components
+        internal Animator animator;
 
         private CustomPlayerInput _input;
         private GameObject _mainCamera;
         private PlayerAudio _playerAudio;
-        private Animator _animator;
 
         #endregion
 
@@ -40,8 +39,6 @@ namespace Player
         {
             _input = GetComponent<CustomPlayerInput>();
             _playerAudio = GetComponent<PlayerAudio>();
-            _animator = GetComponent<Animator>();
-
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
@@ -81,8 +78,8 @@ namespace Player
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
             MoveMotion = targetDirection.normalized * (_speed * Time.deltaTime);
-            _animator.SetFloat(_animIDSpeed, _animationBlend);
-            _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+            animator.SetFloat(_animIDSpeed, _animationBlend);
+            animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             _playerAudio?.HandleFootsteps();
         }
     }

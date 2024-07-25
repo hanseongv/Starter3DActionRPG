@@ -8,7 +8,8 @@ namespace Player
     [RequireComponent(typeof(PlayerCamera))]
     public class PlayerController : MonoBehaviour
     {
-        
+        [Header("Components")] public Animator animator;
+
         #region Components
 
         private PlayerMovement _playerMovement;
@@ -24,6 +25,8 @@ namespace Player
             _playerMovement = GetComponent<PlayerMovement>();
             _playerJump = GetComponent<PlayerJump>();
             _playerCamera = GetComponent<PlayerCamera>();
+            _playerMovement.animator = animator;
+            _playerJump.animator = animator;
             _playerMovement.Init();
             _playerJump.Init();
             _playerCamera.Init();

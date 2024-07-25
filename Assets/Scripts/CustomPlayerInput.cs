@@ -12,13 +12,24 @@ public class CustomPlayerInput : MonoBehaviour
 
     [Header("Movement Settings")] public bool analogMovement;
 
-    [Header("Mouse Cursor Settings")] public bool cursorLocked;
+    [Header("Mouse Cursor Settings")]
     public bool cursorInputForLook;
 
     public void OnCameraTurn(InputValue value)
     {
         CameraTurnInput(value.isPressed);
         SetCursorState(value.isPressed);
+    }
+
+    private void CameraTurnInput(bool value)
+    {
+        cameraTurn = !cameraTurn;
+    }
+
+    private void SetCursorState(bool newState)
+    {
+        cursorInputForLook = !cursorInputForLook;
+        Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     public void OnMove(InputValue value)
@@ -62,16 +73,5 @@ public class CustomPlayerInput : MonoBehaviour
     public void WalkInput(bool newValue)
     {
         walk = newValue;
-    }
-
-    private void CameraTurnInput(bool value)
-    {
-        cameraTurn = value;
-    }
-
-    private void SetCursorState(bool newState)
-    {
-        cursorInputForLook = newState;
-        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
     }
 }

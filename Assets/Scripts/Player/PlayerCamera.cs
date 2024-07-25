@@ -8,7 +8,6 @@ namespace Player
         public float topClamp = 70.0f;
         public float bottomClamp = -30.0f;
         public float cameraAngleOverride;
-        // public bool lockCameraPosition;
 
         #region Variables
 
@@ -32,8 +31,6 @@ namespace Player
 
         internal void CameraRotation()
         {
-            // lockCameraPosition = !_input.cameraTurn;
-            // if (_input.cameraTurn == false) return;
             if (_input.look.sqrMagnitude >= Threshold && _input.cameraTurn)
             {
                 var deltaTimeMultiplier = 10.0f * Time.deltaTime;

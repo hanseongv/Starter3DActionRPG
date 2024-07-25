@@ -24,10 +24,10 @@ namespace Player
         #endregion
 
         #region Components
+        internal Animator animator;
 
         private CustomPlayerInput _input;
         private PlayerGroundedCheck _groundedCheck;
-        private Animator _animator;
 
         #endregion
 
@@ -37,7 +37,6 @@ namespace Player
             _terminalVelocity = 53.0f;
             _input = GetComponent<CustomPlayerInput>();
             _groundedCheck = GetComponent<PlayerGroundedCheck>();
-            _animator = GetComponent<Animator>();
             _jumpTimeoutDelta = jumpTimeout;
             _fallTimeoutDelta = fallTimeout;
             _animIDJump = Animator.StringToHash("Jump");
@@ -50,10 +49,10 @@ namespace Player
             {
                 _fallTimeoutDelta = fallTimeout;
 
-                if (_animator)
+                if (animator)
                 {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
+                    animator.SetBool(_animIDJump, false);
+                    animator.SetBool(_animIDFreeFall, false);
                 }
 
                 if (_verticalVelocity < 0.0f)
@@ -65,9 +64,9 @@ namespace Player
                 {
                     _verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
-                    if (_animator)
+                    if (animator)
                     {
-                        _animator.SetBool(_animIDJump, true);
+                        animator.SetBool(_animIDJump, true);
                     }
                 }
 
@@ -86,7 +85,7 @@ namespace Player
                 }
                 else
                 {
-                    _animator.SetBool(_animIDFreeFall, true);
+                    animator.SetBool(_animIDFreeFall, true);
                 }
 
                 _input.jump = false;
