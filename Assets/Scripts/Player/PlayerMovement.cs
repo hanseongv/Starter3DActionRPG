@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 namespace Player
 {
     [RequireComponent(typeof(CustomPlayerInput))]
-    [RequireComponent(typeof(PlayerAudio))]
     public class PlayerMovement : MonoBehaviour
     {
         internal Vector3 MoveMotion;
@@ -26,6 +25,7 @@ namespace Player
         #endregion
 
         #region Components
+
         internal Animator animator;
 
         private CustomPlayerInput _input;
@@ -34,11 +34,9 @@ namespace Player
 
         #endregion
 
-
         internal void Init()
         {
             _input = GetComponent<CustomPlayerInput>();
-            _playerAudio = GetComponent<PlayerAudio>();
             _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");

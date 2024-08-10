@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3bf11e47adbdd4542a4be54c81dac563
+timeCreated: 1479301536
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76699
+  packageName: Fighting Motions Vol.1
+  packageVersion: 1.0
+  assetPath: Assets/FightingMotionsVolume1/Prefabs/BlueGuy.prefab
+  uploadId: 148132

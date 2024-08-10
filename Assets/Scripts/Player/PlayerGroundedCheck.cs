@@ -18,6 +18,7 @@ namespace Player
         #endregion
 
         #region Components
+
         internal Animator animator;
 
         #endregion
@@ -34,7 +35,7 @@ namespace Player
 
         private void GroundedCheck()
         {
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z);
+            var spherePosition = new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z);
             grounded = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers, QueryTriggerInteraction.Ignore);
 
             animator.SetBool(_animIDGrounded, grounded);

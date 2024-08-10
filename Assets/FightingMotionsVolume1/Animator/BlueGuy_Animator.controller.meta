@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4737e6302c9030246ae91eff65c36dbd
+timeCreated: 1478090974
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76699
+  packageName: Fighting Motions Vol.1
+  packageVersion: 1.0
+  assetPath: Assets/FightingMotionsVolume1/Animator/BlueGuy_Animator.controller
+  uploadId: 148132

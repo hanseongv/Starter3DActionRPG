@@ -8,13 +8,7 @@ namespace Player
         public AudioClip[] footstepAudioClips;
         [Range(0, 1)] public float footstepAudioVolume = 0.5f;
 
-        private CharacterController _controller;
-
-        private void Start()
-        {
-            _controller = GetComponent<CharacterController>();
-        }
-
+        internal CharacterController controller;
         public void HandleFootsteps()
         {
         }
@@ -26,7 +20,7 @@ namespace Player
                 if (footstepAudioClips.Length > 0)
                 {
                     var index = Random.Range(0, footstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(footstepAudioClips[index], transform.TransformPoint(_controller.center), footstepAudioVolume);
+                    AudioSource.PlayClipAtPoint(footstepAudioClips[index], transform.TransformPoint(controller.center), footstepAudioVolume);
                 }
             }
         }
@@ -35,7 +29,7 @@ namespace Player
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(landingAudioClip, transform.TransformPoint(_controller.center), footstepAudioVolume);
+                AudioSource.PlayClipAtPoint(landingAudioClip, transform.TransformPoint(controller.center), footstepAudioVolume);
             }
         }
     }

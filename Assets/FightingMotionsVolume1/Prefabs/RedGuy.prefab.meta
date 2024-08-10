@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fd79887f970ff394c92966c76af78a10
+timeCreated: 1479301598
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76699
+  packageName: Fighting Motions Vol.1
+  packageVersion: 1.0
+  assetPath: Assets/FightingMotionsVolume1/Prefabs/RedGuy.prefab
+  uploadId: 148132

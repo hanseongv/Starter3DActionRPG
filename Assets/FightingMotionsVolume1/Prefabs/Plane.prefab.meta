@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e0eba113fe1019f4cba978dac0d7c965
+timeCreated: 1478914709
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 76699
+  packageName: Fighting Motions Vol.1
+  packageVersion: 1.0
+  assetPath: Assets/FightingMotionsVolume1/Prefabs/Plane.prefab
+  uploadId: 148132
