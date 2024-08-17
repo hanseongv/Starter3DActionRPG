@@ -156,7 +156,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 8338988565591873055}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 47.51
     OrthographicSize: 10
     NearClipPlane: 0.2
     FarClipPlane: 500
@@ -726,7 +726,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 40
+  field of view: 47.51
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -788,7 +788,7 @@ Animator:
   m_GameObject: {fileID: 1473626501}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
-  m_Controller: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
+  m_Controller: {fileID: 9100000, guid: 79637c7b236184b118744e4280f5f7fd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -854,7 +854,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35fa6af81a21f49229bc6f317f625e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 10
+  moveDistance: 0.5
+  moveDuration: 0.1
 --- !u!1 &1591973806
 GameObject:
   m_ObjectHideFlags: 3
@@ -3013,10 +3014,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c1f33dfb240b894824ba47d59fa60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JumpMotion: {x: 0, y: 0, z: 0}
   jumpHeight: 1.2
-  jumpTimeout: 0.5
+  jumpTimeout: 0
   gravity: -15
   fallTimeout: 0.15
+  _verticalVelocity: 0
 --- !u!114 &6982812147933622151
 MonoBehaviour:
   m_ObjectHideFlags: 0

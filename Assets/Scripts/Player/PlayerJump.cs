@@ -6,7 +6,7 @@ namespace Player
     [RequireComponent(typeof(PlayerGroundedCheck))]
     public class PlayerJump : MonoBehaviour
     {
-        internal Vector3 JumpMotion;
+        [SerializeField] internal Vector3 JumpMotion;
         [Header("Jump")] public float jumpHeight = 1.2f;
         public float jumpTimeout = 0.50f;
         [Space(5)] [Header("Fall")] public float gravity = -15.0f;
@@ -14,7 +14,7 @@ namespace Player
 
         #region Variables
 
-        private float _verticalVelocity;
+        [SerializeField] internal float _verticalVelocity;
         private float _terminalVelocity;
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
@@ -38,6 +38,7 @@ namespace Player
             _input = GetComponent<CustomPlayerInput>();
             _groundedCheck = GetComponent<PlayerGroundedCheck>();
             _groundedCheck.animator = animator;
+            jumpTimeout = Mathf.Clamp(jumpTimeout, 0.5f, jumpTimeout);
             _jumpTimeoutDelta = jumpTimeout;
             _fallTimeoutDelta = fallTimeout;
             _animIDJump = Animator.StringToHash("Jump");
@@ -53,7 +54,6 @@ namespace Player
 
             Gravity();
 
-
             JumpMotion = new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime;
         }
 
@@ -61,17 +61,18 @@ namespace Player
         {
             _fallTimeoutDelta = fallTimeout;
 
-            animator.SetBool(_animIDJump, false);
             animator.SetBool(_animIDFreeFall, false);
             if (_verticalVelocity < 0.0f)
                 _verticalVelocity = -2f;
 
             UpdateJumpTimeout();
             if (_input.jump == false || 0.0f < _jumpTimeoutDelta) return;
-
+            animator.ResetTrigger("doAttack");
             _verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.SetBool(_animIDJump, true);
+            animator.SetTrigger("doJump");
+            _input.jump = false;
         }
+
 
         private void UpdateJumpTimeout()
         {
@@ -84,13 +85,9 @@ namespace Player
             _jumpTimeoutDelta = jumpTimeout;
 
             if (_fallTimeoutDelta >= 0.0f)
-            {
                 _fallTimeoutDelta -= Time.deltaTime;
-            }
             else
-            {
                 animator.SetBool(_animIDFreeFall, true);
-            }
 
             _input.jump = false;
         }

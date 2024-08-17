@@ -80,5 +80,6 @@ namespace Player
             animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             _playerAudio?.HandleFootsteps();
         }
+        
     }
 }

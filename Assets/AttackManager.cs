@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Player;
 using UnityEngine;
 
@@ -11,9 +12,15 @@ public class AttackManager : MonoBehaviour
         _controller = GetComponentInParent<PlayerController>();
     }
 
+    public float moveDistance = 1f; // 이동할 거리
+    public float moveDuration = 0.05f;
+
     private void StartAttack()
     {
-        _controller.isAttack = true;
+        // _controller.isAttack = true;
+        // var targetPosition = _controller.transform.position + _controller.transform.forward * moveDistance;
+        // _controller.transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InExpo).OnComplete(() => { });
+        _controller.Dash(moveDistance, moveDuration);
     }
 
     private void HitPoint()
@@ -22,6 +29,6 @@ public class AttackManager : MonoBehaviour
 
     private void EndAttack()
     {
-        _controller.isAttack = false;
+        _controller._animator.ResetTrigger("doAttack");
     }
 }

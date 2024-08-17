@@ -1,5 +1,6 @@
 using System;
 using Define;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Player
@@ -16,15 +17,16 @@ namespace Player
 
         private bool _isLockMotion;
         [SerializeField] internal bool isAttack;
+        [SerializeField] internal bool isJump;
 
         #endregion
 
         #region Components
 
-        private Animator _animator;
+        internal Animator _animator;
         private PlayerAudio _playerAudio;
         internal PlayerMovement _playerMovement;
-        private PlayerJump _playerJump;
+        internal PlayerJump _playerJump;
         private PlayerCamera _playerCamera;
         internal CharacterController _controller;
         private PlayerAttack _attack;
@@ -55,13 +57,27 @@ namespace Player
         private void Update()
         {
             if (_isLockMotion) return;
+            // if (Input.GetKeyDown(KeyCode.Alpha1))
+            // {
+            //     Dash(1.0f, 0.1f); 
+            // }
+
             _attack.Attack();
-            if (isAttack) return;
+            
+            if (_isDashing) return;
+
+            _playerMovement.Move();
 
             _playerJump.JumpAndFall();
-            _playerMovement.Move();
+
+            if (isAttack)
+            {
+                _playerMovement.MoveMotion = Vector3.zero;
+            }
+
             _controller.Move(_playerMovement.MoveMotion + _playerJump.JumpMotion);
         }
+
 
         private void LateUpdate()
         {
@@ -71,6 +87,38 @@ namespace Player
         private void FixedUpdate()
         {
             _animator.SetFloat(AnimatorHashes.StateTime, Mathf.Repeat(_animator.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f));
+        }
+
+
+        private Vector3 _dashDirection;
+        private float _dashTimeRemaining;
+        private bool _isDashing;
+
+        internal void Dash(float moveDistance, float moveDuration)
+        {
+            var targetPosition = _controller.transform.position + _controller.transform.forward * moveDistance;
+            _dashDirection = (targetPosition - _controller.transform.position).normalized;
+
+            DOTween.To(() => 0f, x => MoveCharacter(_dashDirection, x * moveDistance / moveDuration), moveDistance, moveDuration)
+                .SetEase(Ease.OutExpo)
+                .OnComplete(() => _isDashing = false);
+
+            _isDashing = true;
+            _dashTimeRemaining = moveDuration;
+        }
+
+        private void MoveCharacter(Vector3 direction, float distance)
+        {
+            if (_dashTimeRemaining > 0)
+            {
+                // 충돌 감지를 유지하며 이동
+                _controller.Move(direction * distance * Time.deltaTime);
+                _dashTimeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                _isDashing = false;
+            }
         }
     }
 }
