@@ -8,7 +8,7 @@ namespace Player
     {
         [SerializeField] internal Vector3 JumpMotion;
         [Header("Jump")] public float jumpHeight = 1.2f;
-        public float jumpTimeout = 0.50f;
+        public float jumpTimeout = 0.40f;
         [Space(5)] [Header("Fall")] public float gravity = -15.0f;
         public float fallTimeout = 0.15f;
 
@@ -38,7 +38,7 @@ namespace Player
             _input = GetComponent<CustomPlayerInput>();
             _groundedCheck = GetComponent<PlayerGroundedCheck>();
             _groundedCheck.animator = animator;
-            jumpTimeout = Mathf.Clamp(jumpTimeout, 0.5f, jumpTimeout);
+            jumpTimeout = Mathf.Clamp(jumpTimeout, 0.2f, jumpTimeout);
             _jumpTimeoutDelta = jumpTimeout;
             _fallTimeoutDelta = fallTimeout;
             _animIDJump = Animator.StringToHash("Jump");

@@ -57,11 +57,7 @@ namespace Player
         private void Update()
         {
             if (_isLockMotion) return;
-            // if (Input.GetKeyDown(KeyCode.Alpha1))
-            // {
-            //     Dash(1.0f, 0.1f); 
-            // }
-
+         
             _attack.Attack();
             
             if (_isDashing) return;

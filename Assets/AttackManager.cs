@@ -1,5 +1,3 @@
-using System;
-using DG.Tweening;
 using Player;
 using UnityEngine;
 
@@ -17,9 +15,6 @@ public class AttackManager : MonoBehaviour
 
     private void StartAttack()
     {
-        // _controller.isAttack = true;
-        // var targetPosition = _controller.transform.position + _controller.transform.forward * moveDistance;
-        // _controller.transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InExpo).OnComplete(() => { });
         _controller.Dash(moveDistance, moveDuration);
     }
 

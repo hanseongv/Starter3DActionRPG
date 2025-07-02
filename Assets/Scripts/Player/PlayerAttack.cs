@@ -29,29 +29,18 @@ namespace Player
 
         internal void Attack()
         {
-            // animator.SetBool("isAttack", false);
-
             if (CanAttack() == false) return;
-            // animator.SetBool("Jump", false);
-            // animator.SetBool("FreeFall", false);
-            // _input.jump = false;
-            // controller._playerJump.StopJump();
+         
             _input.attack = false;
-            // controller.isAttack = true;
-            // OnAttackCoolTime();
+         
             OnStateBattle();
-            // animator.ResetTrigger("doJump");
 
             animator.SetTrigger("doAttack");
-            // animator.SetBool("isAttack", true);
         }
 
         private bool CanAttack()
         {
             return _input.attack && _groundedCheck.grounded && attackCoolTime == 0 && !_input.jump;
-            // return _input.attack && _groundedCheck.grounded && attackCoolTime == 0 && !controller.isJump;
-            
-            // && controller._playerJump.JumpMotion.y == 0.0f;
         }
 
         private void OnAttackCoolTime()
@@ -85,7 +74,7 @@ namespace Player
         private IEnumerator BattleRoutine()
         {
             animator.SetBool("isBattle", true);
-            yield return new WaitForSeconds(8.0f);
+            yield return new WaitForSeconds(5.0f);
             animator.SetBool("isBattle", false);
         }
     }
